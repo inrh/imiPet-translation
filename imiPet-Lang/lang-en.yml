@@ -300,10 +300,10 @@ SUCCESSFULLY_PUT_IN_PACK:
 CAN_NOT_RIDE:
   - "&f"
   - "&f   &7&l[&6&limiPet&7&l]"
-  - "&f   &c该pet 不可坐骑"
+  - "&f   &cNot able to ride this pet!"
   - "&f"
 RIDING_PET:
   - "&f"
   - "&f   &7&l[&6&limiPet&7&l]"
-  - "&f   &a你正在骑行pet "
+  - "&f   &aRiding pet "
   - "&f"
