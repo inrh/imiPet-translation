@@ -3,7 +3,7 @@
 
 
 ***
-<div align=center>![LOGO 图标](https://dev.tencent.com/u/inrhINRH/p/tuchuang/git/raw/09334ae3b7ab2b9cc759e99fb2f50e38dddcee1c/imiPetLogo.png)
+<div align=center>![LOGO 图标](https://inrhinrh.coding.net/p/tuchuang/d/tuchuang/git/raw/d6cc50dd7df4ccc2c7b2130ade19882dc5b518c3/imiPetLogo.png)
 
 > <b>前言</b>
 
@@ -12,19 +12,11 @@
 此外，还配套了VexView界面，当然也不强制使用VexView，可以通过命令执行功能
 <br/>
 </br>
-我们对ModelAPI和AdditionsAPI源代码进行了些修改，允许了非开发者用户通过配置自定义宠物模型，而且还支持可有可无OptiFine
+用户可以在配置或API中设计宠物，当然支持动作动态模型  
 
-对于自定义宠物模型，我们提供了两种选择：<font color=#8B8682>开发-API / 非开发-配置</font>
+3.0.0版本后做了优化性更新，让用户更加简单地制作动态模型，也不会产生大量盔甲架，因此不必过于担心上手难度和影响服务器性能  
 
-前者相对于后者在动态设置而言，API更占优势，在接下来的指南中您将会了解到的
-***
-
-
-> **[warning] 注意**
->
-> 本教程主要引用的贴图及源代码为：https://gitlab.com/Ticxo/demomodel
-
-
+总之，在后面的教程各位将会了解到的
 ***
 
 

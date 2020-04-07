@@ -14,7 +14,7 @@
 | Mohist(最新版本)(Forget+bukkit)  | 1.12-1.15 |
 > **[danger] 注意**
 >
-> 已知CatServer不兼容imiPet-2.0.0，请等待对方对imiPet-2.0.0进行兼容
+> 不支持CatServer
 >
 > Minecraft-1.9-1.11版本已不能在imiPet-2.0.0+使用
 >
@@ -28,8 +28,7 @@
 
 |  前置名称  |  何时需要  | 链接  |
 |  ----  | ---- | ---- |
-| MXBukkitLib  |  使用MySQL  |  [点击链接](https://www.mcbbs.net/thread-905269-1-1.html)
-| VexView  |  使用界面  |  [点击链接](https://www.mcbbs.net/plugin.php?id=link_redirect&target=https%3A%2F%2Fwww.vexview.net%2Fresources%2Fvexview-gui-minecraft-1-7-10-1-14-4.2%2F)
+| VexView  |  使用界面  |  [点击链接](https://www.vexview.net/resources/vexview-gui-minecraft-1-7-10-1-16.2/)
 | Vault  |  使用有关经济功能  |  [点击链接](https://www.mcbbs.net/plugin.php?id=link_redirect&target=https%3A%2F%2Fwww.spigotmc.org%2Fresources%2Fvault.34315%2F)
 | PlaceholderAPI  |  变量显示  |  [点击链接](https://www.mcbbs.net/plugin.php?id=link_redirect&target=https%3A%2F%2Fwww.spigotmc.org%2Fresources%2Fplaceholderapi.6245%2F)
 | HolographicDisplays | 显示跟随的宠物名称和信息 | [点击链接](https://dev.bukkit.org/projects/holographic-displays)

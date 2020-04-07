@@ -1,138 +1,72 @@
 # 非开发-配置
 
 ***
-> 版本：2.4.2
+> 版本：3.0.0-Beta
 
 
-新增进化形态展示，需要的可以自行写入，不需要的不用写入
+对模型ID格式没有严格限制  
+也就是说，可以不需要冒号 :  
+
+
+删除了原来的模型配置以下的值  
+pet.animationList  
+pet.animationTime  
+pet.part  
+pet.entityDraw.itemName  
+pet.entityDraw.customModelData  
+
+手持喂养宠物的值调整了，更加简单
 ``` yaml
 pet:
-    # 进化仓界面
-    vgEvolution:
-    # 进化后形态的展示
-      show:
-        # 位置
-        x: 150
-        y: 150
-        # 尺寸
-        size: 70
+  # 关于手持喂养
+  eat:
+    # 是否启用
+    enable: true
+    # 格式为 标识符:数值:数量:脚本:脚本的值
+    # 标识符仅支持 material name lore
+    list:
+      - 'material:APPLE:1:addHP:2'
+      - 'name:&a卡哇伊:1:addFood:2'
+      - 'lore:&a描述:1:command_op:give @player minecraft:apple 1'
 ```
-***
-#####模型配置增删改内容
-> 版本：2.4.0
 
-
-***
-> **[danger]** 删除内容
-
+坐骑的位置修改了，位于pet父节点下
 ``` yaml
-  # 宠物展示图 - 大
-  #  推荐图片大小 250x250 或更大
-  imageShowBig: ""
-  # 宠物展示图 - 小
-  imageShowSmall: ""
+pet:
+  # 关于坐骑
+  ride:
+    # 是否允许坐骑
+    enable: false
+    # 是否为小型盔甲架(坐骑时)
+    isSmall: true
+    # 是否可以飞行，否则是跳跃
+    canFly: false
 ```
-  
-> **[success]** 增加内容
 
 
+新增以下值，所有模型由纹理包控制
 ``` yaml
-  # 宠物展示 - 实体绘制
-  entityDraw:
-    # 物品名称
-    itemName: "§a§3§a§3§b§7§c§a§70"
-    # 模型数据
-    customModelData: 5000
-    # 主界面
-    vgHome:
-      big:
-        # 位置
-        x: 95
-        y: 150
-        # 尺寸
-        size: 100
-      # 小(选择框)
-      small:
-        # 位置
-        x: 15
-        y: 26
-        # 选择框递增X坐标(支持负数)
-        addX: 10
-        # 尺寸
-        size: 20
-    # 经验库界面
-    vgExp:
-      # 小(选择框)
-      small:
-        # 位置(已选择框)
-        firstX: 88
-        firstY: 56
-        # 位置(待选择框)
-        x: 15
-        y: 26
-        # 选择框递增X坐标(支持负数)
-        addX: 10
-        # 尺寸
-        size: 20
-    vgTransferPackWarehouse:
-      # 小(选择框)
-      small:
-        # 位置(待选择框)
-        x: 15
-        y: 26
-        # 选择框递增X坐标(支持负数)
-        addX: 10
-        # 尺寸
-        size: 20
-    # 进化仓界面
-    vgEvolution:
-      big:
-        # 位置
-        x: 65
-        y: 100
-        # 尺寸
-        size: 70
-      # 小(选择框)
-      small:
-        # 位置(已选择框)
-        firstX: 65
-        firstY: 161
-        # 位置(待选择框)
-        x: 15
-        y: 26
-        # 选择框递增X坐标(支持负数)
-        addX: 10
-        # 尺寸
-        size: 20
-    # 更新信息界面
-    vgUpdateInfo:
-      big:
-        # 位置
-        x: 95
-        y: 150
-        # 尺寸
-        size: 100
-      # 小(选择框)
-      small:
-        # 位置(已选择框)
-        firstX: 35
-        firstY: 201
-        # 位置(待选择框)
-        x: 15
-        y: 26
-        # 选择框递增X坐标(支持负数)
-        addX: 10
-        # 尺寸
-        size: 20
-    # 宠物仓库界面
-    vgWarehouse:
-      # 小(选择框)
-      small:
-        # 位置(待选择框)
-        x: 40
-        y: 72
-        # 选择框递增Y坐标(支持负数)
-        addY: 45
-        # 尺寸
-        size: 28
+pet:
+  # 关于模型与动态模型
+  animation:
+    # 关于模型位置
+    location:
+      # 显示高度
+      h: 1
+    # 空闲状态
+    idle:
+      # 物品名称
+      itemName: "§8"
+      # 模型数据，仅支持1.14+
+      customModelData: 10000
+    # 行走状态
+    walk:
+      itemName: "§a"
+      customModelData: 10001
+    # 攻击状态
+    attack:
+      itemName: "§5"
+      customModelData: 10002
+      # 显示攻击动作动态时长，秒
+      time: 5
 ```

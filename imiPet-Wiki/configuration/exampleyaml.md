@@ -3,14 +3,208 @@
 ``` yaml
 pet:
   # 模型唯一ID
-  #modelId: "default:pet"
-  modelId: "demomodel:phantom_empress"
+  modelId: "test"
+  #  可用数学：
+  #    () 括号
+  #    * 乘法
+  #    / 除法
+  #    + 加法
+  #    - 减法
+  #    还要更多请看：https://www.runoob.com/jsref/jsref-obj-math.html
+  #
+  # 玩家获得经验的同时也额外存入到经验存储盒
+  #   变量
+  #     add_exp 玩家获得的经验值
+  #   当然，玩家获得的经验不会因而减少
+  addExpByPlayer: "(Math.random()*(add_exp*0.2))+(add_exp*0.1)"
+  # 关于宠物经验等级公式
+  #   变量
+  #     level 宠物升级前的等级
+  levelExpFormula: "30*(level*level*level+5*level)-10"
+  # 关于宠物最低攻击公式
+  #   变量
+  #     level 宠物升级前的等级
+  #     min_damage 宠物升级前得最低攻击
+  addMinAttackFormula: "min_damage+0.3"
+  # 关于宠物最高攻击公式
+  #   变量
+  #     level 宠物升级前的等级
+  #     max_damage 宠物升级前得最高攻击
+  addMaxAttackFormula: "max_damage+0.3"
+  # 关于宠物活力公式
+  #   变量
+  #     level 宠物升级前的等级
+  #     max_food 宠物升级前的最大活力
+  addFoodFormula: "max_food+10"
+  # 关于宠物最大血量公式
+  #   变量
+  #     level 宠物升级前的等级
+  #     max_hp 宠物升级前的最大血量
+  addMaxHPFormula: "max_hp+10"
+  # 回复血量需求
+  cureHP:
+    requirement:
+      # 需要经济
+      #   回复一血需要多少经济
+      money: 0.1
+      # 是否允许通过MC回血药水对宠物回血
+      potion: false
+  # 宠物活力值
+  food:
+    # 是否会消耗活力
+    enable: true
+    # 活力补充需求
+    requirement:
+      # 需要经济
+      #   补充一活力需要多少经济
+      money: 0.1
+  # 关于宠物进化
+  evolution:
+    # 是否可以进化
+    enable: false
+    requirement:
+      # 进化所需宠物等级
+      level: 10
+      # 进化所需经济
+      money: 300
+    # 点击进化按钮的信息
+    text:
+      - "&f                                            "
+      - "&f它..."
+      - "&f一个天使的化身"
+      - "&f达到一定高度后，终将如仙境般的转化"
+      - "&f"
+      - "&6进化条件"
+      - "&f需要达到 &c%imipet_evolutionlevel% &f级"
+      - "&f"
+      - "&6如果满足条件，请问，是否确定进化"
+      - "&f"
+      - "&7&l[&a点击确定&7&l]"
+      - "&f"
+    # 指定新的模型ID
+    newModelId: "aaa"
+  # 基本值
+  basis:
+    display:
+      # 默认的宠物名称
+      name: "小天使"
+      # 名称格式
+      format: "&7[&6主人：&f%imipet_owner%&7] &f%imipet_name%"
+      # 是否显示名称
+      show: true
+      # 可选：hd，tr
+      useShow: hd
+      # 全息
+      hd:
+        # 显示名称Y轴
+        height: 2
+        # 显示名称X轴
+        x: 0
+        # 显示名称Z轴
+        z: 0
+        formatList:
+          - "&7[&6主人：&f%imipet_owner%&7][&flv.%imipet_level%&7]"
+          - "&f%imipet_name%"
+          - "&c血量 &f%imipet_nowhp%&7/&f%imipet_maxhp%"
+      # 太弱全息
+      tr:
+        # 显示名称Y轴
+        height: 2
+        # 显示名称X轴
+        x: 0
+        # 显示名称Z轴
+        z: 0
+        formatList:
+          - "&7[&6主人：&f%imipet_owner%&7][&flv.%imipet_level%&7]"
+          - '&e%animations_typewriter?pause=3,reverse=true_%imipet_name%%<update:5>'
+          - "&c血量 &f%imipet_nowhp%&7/&f%imipet_maxhp%"
+    # 初始血量
+    HP: 20
+    # 初始伤害范围
+    minDamage: 2
+    maxDamage: 6
+    # 初始活力值
+    food: 20
+    # 初始最极经验值
+    exp: 100
+    # 等级上限
+    level: 100
+  # 关于坐骑
+  ride:
+    # 是否允许坐骑
+    enable: false
+    # 是否为小型盔甲架(坐骑时)
+    isSmall: true
+    # 是否可以飞行，否则是跳跃
+    canFly: false
+  # 交互式功能
+  interaction:
+    # 显示宠物信息
+    info:
+      # 是否启用
+      enable: true
+      # 优先显示方式 (hd 或 tr)
+      show: tr
+      # 全息
+      hd:
+        # 显示时长 (秒)
+        stayTime: 6
+        stringList:
+          - "&f名称： %imipet_name%"
+          - "&f血量 %imipet_nowhp%&7/&f%imipet_maxhp%"
+        # 全息位置
+        x: 1
+        y: 1
+        z: 0
+      # 太弱全息
+      tr:
+        # 显示时长 (秒)
+        stayTime: 6
+        stringList:
+          - 'item:<head:%player_name%>'
+          - '&b名称 %animations_glow?normal=&8&l,start=&3&l,middle=&b&l,end=&3&l,size=5_%imipet_name%%<update:3>'
+          - ''
+          - '&c等级 %animations_pulse?color=cyan_%imipet_level%%<update:10>'
+          - ''
+          - '&e%animations_typewriter?pause=3,reverse=true_看什么看，没见过帅锅嘛%<update:5>'
+        # 全息位置
+        x: 1
+        y: 3
+        z: 0
+  # 关于手持喂养
+  eat:
+    # 是否启用
+    enable: true
+    # 格式为 标识符:数值:数量:脚本:脚本的值
+    # 标识符仅支持 material name lore
+    list:
+      - 'material:APPLE:1:addHP:2'
+      - 'name:&a卡哇伊:1:addFood:2'
+      - 'lore:&a描述:1:command_op:give @player minecraft:apple 1'
+  # 关于模型与动态模型
+  animation:
+    # 关于模型位置
+    location:
+      # 显示高度
+      h: 1
+    # 空闲状态
+    idle:
+      # 物品名称
+      itemName: "§8"
+      # 模型数据，仅支持1.14+
+      customModelData: 10000
+    # 行走状态
+    walk:
+      itemName: "§a"
+      customModelData: 10001
+    # 攻击状态
+    attack:
+      itemName: "§5"
+      customModelData: 10002
+      # 显示攻击动作动态时长，秒
+      time: 5
   # 宠物展示 - 实体绘制
   entityDraw:
-    # 物品名称
-    itemName: "§a§3§a§3§b§7§c§a§70"
-    # 模型数据
-    customModelData: 5000
     # 主界面
     vgHome:
       big:
@@ -72,7 +266,7 @@ pet:
         addX: 10
         # 尺寸
         size: 20
-    # 进化后形态的展示
+      # 进化后形态的展示
       show:
         # 位置
         x: 150
@@ -110,399 +304,4 @@ pet:
         addY: 45
         # 尺寸
         size: 28
-  #
-  #  可用数学：
-  #    () 括号
-  #    * 乘法
-  #    / 除法
-  #    + 加法
-  #    - 减法
-  #    还要更多请看：https://www.runoob.com/jsref/jsref-obj-math.html
-  #
-  # 玩家获得经验的同时也额外存入到经验存储盒
-  #   变量
-  #     add_exp 玩家获得的经验值
-  #   当然，玩家获得的经验不会因而减少
-  addExpByPlayer: "(Math.random()*(add_exp*0.2))+(add_exp*0.1)"
-  # 关于宠物经验等级公式
-  #   变量
-  #     level 宠物升级前的等级
-  levelExpFormula: "30*(level*level*level+5*level)-10"
-  # 关于宠物最低攻击公式
-  #   变量
-  #     level 宠物升级前的等级
-  #     min_damage 宠物升级前得最低攻击
-  addMinAttackFormula: "min_damage+0.3"
-  # 关于宠物最高攻击公式
-  #   变量
-  #     level 宠物升级前的等级
-  #     max_damage 宠物升级前得最高攻击
-  addMaxAttackFormula: "max_damage+0.3"
-  # 关于宠物活力公式
-  #   变量
-  #     level 宠物升级前的等级
-  #     max_food 宠物升级前的最大活力
-  addFoodFormula: "max_food+10"
-  # 关于宠物最大血量公式
-  #   变量
-  #     level 宠物升级前的等级
-  #     max_hp 宠物升级前的最大血量
-  addMaxHPFormula: "max_hp+10"
-  # 回复血量需求
-  cureHP:
-    requirement:
-      # 需要经济
-      #   回复一血需要多少经济
-      money: 0.1
-      # 是否允许通过MC回血药水对宠物回血
-      potion: false
-  # 关于宠物进化
-  evolution:
-    # 是否可以进化
-    enable: false
-    requirement:
-      # 进化所需宠物等级
-      level: 10
-      # 进化所需经济
-      money: 300
-    # 点击进化按钮的信息
-    text:
-      - "&f                                            "
-      - "&f它..."
-      - "&f一个天使的化身"
-      - "&f达到一定高度后，终将如仙境般的转化"
-      - "&f"
-      - "&6进化条件"
-      - "&f需要达到 &c%imipet_evolutionlevel% &f级"
-      - "&f"
-      - "&6如果满足条件，请问，是否确定进化"
-      - "&f"
-      - "&7&l[&a点击确定&7&l]"
-      - "&f"
-    # 指定新的模型ID
-    newModelId: "null:aaa"
-  # 宠物活力值
-  food:
-    # 是否会消耗活力
-    enable: true
-    # 活力补充需求
-    requirement:
-      # 需要经济
-      #   补充一活力需要多少经济
-      money: 0.1
-  # 基本值
-  basis:
-    display:
-      # 默认的宠物名称
-      name: "小天使"
-      # 名称格式
-      format: "&7[&6主人：&f%imipet_owner%&7] &f%imipet_name%"
-      # 是否显示名称
-      show: true
-      # 可选：hd，tr
-      useShow: hd
-      # 全息
-      hd:
-        # 显示名称Y轴
-        height: 2
-        # 显示名称X轴
-        x: 0
-        # 显示名称Z轴
-        z: 0
-        formatList:
-          - "&7[&6主人：&f%imipet_owner%&7][&flv.%imipet_level%&7]"
-          - "&f%imipet_name%"
-          - "&c血量 &f%imipet_nowhp%&7/&f%imipet_maxhp%"
-      # 太弱全息
-      tr:
-        # 显示名称Y轴
-        height: 2
-        # 显示名称X轴
-        x: 0
-        # 显示名称Z轴
-        z: 0
-        formatList:
-          - "&7[&6主人：&f%imipet_owner%&7][&flv.%imipet_level%&7]"
-          - '&e%animations_typewriter?pause=3,reverse=true_%imipet_name%%<update:5>'
-          - "&c血量 &f%imipet_nowhp%&7/&f%imipet_maxhp%"
-    # 初始血量
-    HP: 20
-    # 初始伤害范围
-    minDamage: 2
-    maxDamage: 6
-    # 初始活力值
-    food: 20
-    # 初始最极经验值
-    exp: 100
-    # 等级上限
-    level: 100
-    # 关于坐骑
-    ride:
-      # 是否允许坐骑
-      enable: false
-      # 是否为小型盔甲架(坐骑时)
-      isSmall: true
-      # 是否可以飞行，否则是跳跃
-      canFly: false
-  # 交互式功能
-  interaction:
-    # 显示宠物信息
-    info:
-      # 是否启用
-      enable: true
-      # 优先显示方式 (hd 或 vexview)
-      show: tr
-      # 全息
-      hd:
-        # 显示时长 (秒)
-        stayTime: 6
-        stringList:
-          - "&f名称： %imipet_name%"
-          - "&f血量 %imipet_nowhp%&7/&f%imipet_maxhp%"
-        # 全息位置
-        x: 1
-        y: 1
-        z: 0
-      # 太弱全息
-      tr:
-        # 显示时长 (秒)
-        stayTime: 6
-        stringList:
-          - 'item:<head:%player_name%>'
-          - '&b名称 %animations_glow?normal=&8&l,start=&3&l,middle=&b&l,end=&3&l,size=5_%imipet_name%%<update:3>'
-          - ''
-          - '&c等级 %animations_pulse?color=cyan_%imipet_level%%<update:10>'
-          - ''
-          - '&e%animations_typewriter?pause=3,reverse=true_看什么看，没见过帅锅嘛%<update:5>'
-        # 全息位置
-        x: 1
-        y: 3
-        z: 0
-  # 喂养功能
-  eat:
-    # 是否启用
-    enable: true
-    # 食物列表
-    foodList:
-      # 判断食物名称和Lore
-      stringList:
-        # 食物ID
-        1:
-          # 所需物品数量
-          amount: 1
-          # 所有名称列表
-          name:
-            - "苹果"
-            - "&c月饼"
-            - "&f冰心素块"
-          # 所有Lore列表
-          lore:
-            - "&8奥&f力&8给&7之块"
-            - "卡哇伊"
-          script:
-            - "addHP:10"
-            - "addFood:10"
-            - "command_op:gamemode adventure %player_name%"
-        meizu:
-          # 所需物品数量
-          amount: 2
-          lore:
-            - "&8奥&f力&8给&7之块"
-            - "嘻嘻哈哈"
-          script:
-             - "addHP:1"
-             - "addFood:1"
-             - "command_op:give %player_name% minecraft:apple"
-  # 动作动态启用与否列表
-  animationList:
-    # 空闲状态
-    idle: true
-    # 移动状态
-    walk: true
-    # 攻击状态
-    attack: true
-  animationTime:
-    # 攻击动态开始后多少秒终止该动作
-    attackTime: 3
-  # 模型部件或骨骼配置
-  part:
-    # 部件或骨骼的ID
-    #   这里是头部
-    head:
-      # 物品名称
-      itemName: "§f§b§9§9§9§a§1"
-      # 模型纹理数据（1.14及以上版本可用）
-      customModelData: 4111
-      # 是否为头部
-      isHead: true
-      # 是否设置为身体
-      #   如果设置为头部，就不要设置为身体
-      isBody: false
-      # 如果不是上面两项
-      #   那么这个为是否给指定骨骼添加该部件
-      isAddToSkeleton: false
-      # 如果 isAddToSkeleton 为 true
-      #   那么请填入骨骼的ID
-      skeleton: "body"
-      # 部件位置与角度设置
-      addBox:
-        offsetX: 0
-        offsetY: 2
-        offsetZ: 0
-        eulerAngleX: 0
-        eulerAngleY: 0
-        eulerAngleZ: 0
-      # 动态设置
-      # 空闲状态
-      animationIdle:
-        isAnimation: true
-        # 设置帧数 20=1秒
-        keyFrame:
-          1:
-            second: 0
-            eulerAngleX: 10
-            eulerAngleY: 0
-            eulerAngleZ: 0
-            offsetX: 0
-            offsetY: 0
-            offsetZ: 0
-          2:
-            second: 30
-            eulerAngleX: 0
-            eulerAngleY: 0
-            eulerAngleZ: 0
-            offsetX: 0
-            offsetY: -0.125
-            offsetZ: 0
-          3:
-            second: 60
-            eulerAngleX: 10
-            eulerAngleY: 0
-            eulerAngleZ: 0
-            offsetX: 0
-            offsetY: 0
-            offsetZ: 0
-      # 移动状态
-      animationWalk:
-        isAnimation: true
-        # 设置帧数
-        keyFrame:
-          1:
-            second: 0
-            eulerAngleX: 0
-            eulerAngleY: 0
-            eulerAngleZ: 0
-            offsetX: 0
-            offsetY: 0
-            offsetZ: 0
-          2:
-            second: 20
-            eulerAngleX: 0
-            eulerAngleY: 0
-            eulerAngleZ: 0
-            offsetX: 0
-            offsetY: 0
-            offsetZ: 0
-    # 部件或骨骼的ID
-    body:
-      # 物品名称
-      itemName: "§f§b§9§9§9§a§2"
-      # 模型纹理数据（1.14及以上版本可用）
-      customModelData: 4112
-      # 是否为头部
-      isHead: false
-      # 是否设置为身体
-      #   如果设置为头部，就不要设置为身体
-      isBody: true
-      # 如果不是上面两项
-      #   那么这个为是否给指定骨骼添加该部件
-      isAddToSkeleton: false
-      # 如果 isAddToSkeleton 为 true
-      #   那么请填入骨骼的ID
-      skeleton: "body"
-      # 部件位置与角度设置
-      addBox:
-        offsetX: 0
-        offsetY: 2
-        offsetZ: 0
-        eulerAngleX: 0
-        eulerAngleY: 0
-        eulerAngleZ: 0
-      # 动态设置
-      # 空闲状态
-      animationIdle:
-        isAnimation: true
-        # 设置帧数
-        keyFrame:
-          1:
-            second: 0
-            eulerAngleX: 0
-            eulerAngleY: 0
-            eulerAngleZ: 0
-            offsetX: 0
-            offsetY: 0
-            offsetZ: 0
-          2:
-            second: 30
-            eulerAngleX: 0
-            eulerAngleY: 0
-            eulerAngleZ: 0
-            offsetX: 0
-            offsetY: -0.125
-            offsetZ: 0
-          3:
-            second: 60
-            eulerAngleX: 0
-            eulerAngleY: 0
-            eulerAngleZ: 0
-            offsetX: 0
-            offsetY: 0
-            offsetZ: 0
-    # 部件或骨骼的ID
-    waist:
-      # 物品名称
-      itemName: "§f§b§9§9§9§a§3"
-      # 模型纹理数据（1.14及以上版本可用）
-      customModelData: 4113
-      # 是否为头部
-      isHead: false
-      # 是否设置为身体
-      #   如果设置为头部，就不要设置为身体
-      isBody: false
-      # 如果不是上面两项
-      #   那么这个为是否给指定骨骼添加该部件
-      isAddToSkeleton: true
-      # 如果 isAddToSkeleton 为 true
-      #   那么请填入骨骼的ID
-      skeleton: "body"
-      # 部件位置与角度设置
-      addBox:
-        offsetX: 0
-        offsetY: -0.25
-        offsetZ: 0
-        eulerAngleX: 0
-        eulerAngleY: 0
-        eulerAngleZ: 0
-      # 移动状态
-      animationWalk:
-        isAnimation: true
-        # 设置帧数
-        keyFrame:
-          1:
-            second: 0
-            eulerAngleX: 20
-            eulerAngleY: 20
-            eulerAngleZ: 20
-            offsetX: 0
-            offsetY: 0
-            offsetZ: 0
-          2:
-            second: 20
-            eulerAngleX: 20
-            eulerAngleY: 20
-            eulerAngleZ: 20
-            offsetX: 0
-            offsetY: 0
-            offsetZ: 0
-- "command_op:xxx a"
 ```
